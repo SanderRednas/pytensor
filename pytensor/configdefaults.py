@@ -1342,26 +1342,27 @@ def add_caching_dir_configvars():
     # On Windows we should avoid writing temporary files to a directory that is
     # part of the roaming part of the user profile. Instead we use the local part
     # of the user profile, when available.
-    # if sys.platform == "win32" and os.getenv("LOCALAPPDATA") is not None:
-    #     default_base_compiledir = os.path.join(os.getenv("LOCALAPPDATA"), "PyTensor")
-    # else:
-    #     default_base_compiledir = os.path.join(_get_home_dir(), "/lololol/.pytensor")
+    if sys.platform == "win32" and os.getenv("LOCALAPPDATA") is not None:
+        default_base_compiledir = os.path.join(os.getenv("LOCALAPPDATA"), "PyTensor")
+    else:
+        #default_base_compiledir = os.path.join(_get_home_dir(), ".pytensor")
+        default_base_compiledir = os.path.join(_get_home_dir(), "/Volumes/uc_datasciencezorg/poc_workflow")
 
-    # config.add(
-    #     "base_compiledir",
-    #     "platform-independent root directory for compiled modules",
-    #     ConfigParam(
-    #         default_base_compiledir, apply=_filter_base_compiledir, mutable=False
-    #     ),
-    #     in_c_key=False,
-    # )
+    config.add(
+        "base_compiledir",
+        "platform-independent root directory for compiled modules",
+        ConfigParam(
+            default_base_compiledir, apply=_filter_base_compiledir, mutable=False
+        ),
+        in_c_key=False,
+    )
 
-    # config.add(
-    #     "compiledir",
-    #     "platform-dependent cache directory for compiled modules",
-    #     ConfigParam(_default_compiledir, apply=_filter_compiledir, mutable=False),
-    #     in_c_key=False,
-    # )
+    config.add(
+        "compiledir",
+        "platform-dependent cache directory for compiled modules",
+        ConfigParam(_default_compiledir, apply=_filter_compiledir, mutable=False),
+        in_c_key=False,
+    )
 
 
 # Those are the options provided by PyTensor to choose algorithms at runtime.
