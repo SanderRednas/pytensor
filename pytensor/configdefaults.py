@@ -1346,7 +1346,7 @@ def add_caching_dir_configvars():
         default_base_compiledir = os.path.join(os.getenv("LOCALAPPDATA"), "PyTensor")
     else:
         #default_base_compiledir = os.path.join(_get_home_dir(), ".pytensor")
-        default_base_compiledir = os.path.join(_get_home_dir(), "/Volumes/uc_datasciencezorg/poc_workflow")
+        default_base_compiledir = os.path.join(_get_home_dir(), "/Volumes/uc_datasciencezorg/poc_workflow/compilevolume")
 
     config.add(
         "base_compiledir",
